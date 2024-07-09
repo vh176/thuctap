@@ -1,1 +1,22 @@
-aaa
+Part 1-2-3:
+Aws (amazon web services) là trang điện toán đoán mây của amz, cung cấp máy chủ và dịch vụ trên đám mây thay vì làm thủ công kết nối các máy chủ lại và setup như trong quá khứ
+Cơ sở hạ tầng của Aws global bao gồm:
+-	Aws region
+-	Aws availability zone
+-	Aws data center
+-	Aws edge locations
+P/s: Tất cả được hiển thị ở infrastructure.aws
+Aws region là cụm dữ liệu trung tâm, các dữ liệu liên kết và có phạm vị với từng vùng riêng biệt, khi chuyển sang vùng khác (vd US), data sẽ thay đổi và không còn thể hiện data của vùng đã sử dụng trước đó.
+4 lưu ý để chọn region phù hợp:
+-	Tuân thủ (compliance):
+Một số chính phủ yêu cầu data khi phát triển ứng dụng phải nằm trong region của nước đó.
+-	Độ trễ (latency):
+Chọn region phụ thuộc vào region nào có nhiều user sử dụng nhất để giảm tình trạng lag.
+-	Dịch vụ có sẵn (available services):
+Không phải region nào cũng có đủ services, chọn region phù hợp với công việc.
+-	Giá (pricing):
+Mỗi vùng có 1 chi phí khác nhau.
+Aws availability zones: mỗi vùng sẽ có nhiều availability zones khác nhau (min 3, max 6)
+Mỗi availibity zones lại có 1 hoặc nhiều trung tâm dữ liệu khác nhau, các availibity zones được tách ra riêng biệt và không liên quan để phòng trừ thảm họa.
+Tất cả đều được kết nối ở băng thông tốc độ cao, mạng giảm độ trễ và tất cả sẽ kết nối để tạo thành 1 region.
+Vào aws infrastructure services để check available services of region
