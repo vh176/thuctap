@@ -1,0 +1,53 @@
+Part 4:
+1.	Iam Introduction
+Iam (Identity and acess management): có tác dụng tạo nhóm và thêm người dùng vào trong nhóm. Nhóm chỉ chứa người dùng, không chứa nhóm khác. Có thể sẽ có user không ở trong bất kì nhóm nào. Các user có thể ở trong nhiều nhóm khác nhau. Iam có tác dụng phân chia, giới hạn quyền sử dụng cho user hoặc nhóm để quản lý quyền hạn, tài nguyên, chi phí.
+Iam là global services, ko phụ thuộc vào region
+Cách để tạo user và group:
+Search: Iam -> vào mục user ở bên thanh toolbar bên trái, click vào creat user
+2.	Iam Policies
+Iam Policies: Root user có thể tạo policies cho từng group khác nhau (với cả user không trong group), các user sẽ có quyền hạn truy cập theo policies mà root user đề ra.
+ 
+3.	Iam MFA
+Để tránh việc user bị xâm phạm tk, có 2 cách:
+Cách 1: Lưu ý khi đặt pw:
+-	Đặt pw khó (thêm kí tự,…)
+-	Custom yêu cầu khi user đặt pw, không theo định dạng mặc định của aws; có thể cho phép hoặc không cho phép user thay đổi password, hoặc set thời gian user phải thay đổi pw theo định kỳ, có thể không cho phép user thay đổi về mk cũ.
+-	 (account settings or toolbar bên trái -> edit -> custom)
+
+Cách 2: Sử dụng MFA
+MFA = password + thiết bị cá nhân đang sở hữu (tránh trường hợp user bị mất hoặc hack)
+-	MFA ảo (virtual MFA devices): google authenticator, authy
+-	U2F (universal 2nd factor security key): thiết bị vật lý (yubikey)
+-	Hardware key fob
+Cách set up MFA: 
+Vào mục user ở bên phải trên cùng -> Security credentials -> assign MFA -> chọn phương thức
+
+4.	AWS access keys
+3 options để user đăng nhập:
+-	AWS management console (pw + mfa)
+-	CLI (comand line interface): được thiết lập trên máy tính từ một mã truy cập (access key), sau đó tải xuống và đăng nhập trên thiết bị khác. 
+-	SDK (software Development Kit): khi muốn thiết lập API trong aws thông qua access key
+User sẽ tự quản lý access key của riêng mình, không được tiết lộ cho người khác (access key = pw)
+CLI là một công cụ cho phép tương tác với AWS thông qua các câu lệnh, có thể truy cập vào API công cộng và có thể tạo ra những câu lệnh để quản lý resources. (có thể tìm thấy mã nguồn trên github)
+SDK là ngôn ngữ lập trình, giúp user truy cập và quản lý aws services, API trong việc code app.
+Cách tạo access key: user -> name -> Security credentials -> create access key
+
+5.	Cloudshell
+Là phương pháp là terminal để ra câu lệnh chống lại aws và chỉ tồn tại trong 1 số region nhất định. Cloudshell là một kho lưu trữ, khi tạo file trên cloudshell và ấn restart, file vẫn sẽ tồn tại trong cloudshell. Có thể thay đổi định dạng trong cloudshell (font, theme,…). Ngoài ra, có thể download và upload file lên cloudshell.
+
+
+6.	Iam roles
+Iam roles như 1 quyền hạn mà user cấp cho Aws services để nó có thể tự xử lý tác vụ mà không phải do user điều khiển hay hành động.
+Cách tạo role: Roles -> Create roles ->
+7.	Iam security tools
+Iam credentials report: Thông tin của tất cả user và trạng thái đăng nhập. (credential report left toolbar -> download credential report)
+Iam accesss advisor: Hiển thị các cấp của user và thời điểm lần cuối mà user đăng nhập. Có thể kiểm tra quyền hạn của user và hạn chế nó. (user -> name -> access advisor)
+Lưu ý khi sử dụng Iam:
+-	Không sử dụng root acc trừ khi setup AWS account
+-	Mỗi người 1 tk riêng, k sd chung
+-	Có thể ủy quyền user vào trong group và tùy chỉnh quyền hạn của group
+-	Tạo mk khó
+-	Sử dụng MFA để tăng bảo mật
+-	Sử dụng access key cho CLI và SDK để tăng bảo mật
+-	Sử dụng Iam security tools
+-	Không share Iam user và access key
